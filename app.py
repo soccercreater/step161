@@ -61,6 +61,23 @@ def fortune():
   else:
     return fortune_result
 
+# ねぎらいのAPI
+@app.route('/message', methods=['POST'])
+def message():
+  # user_list = ['ren','ken','mike']
+  username = request.form.get('name')
+  return f'毎日お疲れ様。{username}さん、これからも情熱を忘れずに行こう！！！'
+
+
+# ユーザー名とパスワードをJSON形式で受取り、その値を返すAPI
+@app.route('/login', methods=['POST'])
+def login():
+  req = request.get_json(force=True)
+  username = req.get('username',None)
+  password = req.get('password',None)
+  return f'username...{username}とpassword....{password}を登録しました'
+
+
 if __name__ == "__main__":
   app.run()
 
